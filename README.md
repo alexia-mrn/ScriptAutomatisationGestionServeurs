@@ -55,3 +55,50 @@ Installer et configurer le serveur web Apache pour héberger une page web simple
 Si le service n'est pas actif alors il faut le démarrer avec : sudo systemctl start apache2
 #### Test de l'accès via le naviigateur 
 Ouvrir un navigateur web et entrer l'adresse IP du serveur (par exemple : http://172.27.106.186). Si Apache est installé correctement, la page d'accueil d'Apache s'affichera.
+
+
+
+
+
+## 3. Installation et Configuration de Fail2ban
+
+### Objectif  
+Renforcer la sécurité du serveur en installant et configurant Fail2ban pour protéger contre les attaques par force brute.
+
+### Étapes Réalisées  
+
+#### 3.1. Installation de Fail2ban
+  ```bash
+  sudo apt update
+  sudo apt install fail2ban -y
+ ```
+#### 3.2 Vérification du service
+  ```bash
+  sudo systemctl status fail2ban
+ ```
+#### 3.3 Activation du service pour démarrage automatique au boot
+  ```bash
+  sudo systemctl enable fail2ban
+ ```
+#### 3.4 Configuration de Fail2ban pour Apache
+  ```bash
+  sudo cp /etc/fail2ban/jail.conf /etc/fail2ban/jail.local
+ ```
+#### 3.5 Modification du fichier /etc/fail2ban/jail.local pour activer les filtres de sécurité pour Apache :
+  ```bash
+  sudo nano /etc/fail2ban/jail.local
+ ```
+#### 3.6 Redémarrage du service Fail2ban pour appliquer les modifications :
+  ```bash
+  sudo systemctl restart fail2ban
+ ```
+#### 3.7 Vérification des prisons actives :
+  ```bash
+  sudo fail2ban-client status apache-auth
+  sudo fail2ban-client status apache-badbots
+  sudo fail2ban-client status apache-404
+ ```
+#### 3.7 Vérification des logs de Fail2ban :
+  ```bash
+sudo tail -f /var/log/fail2ban.log
+ ```
