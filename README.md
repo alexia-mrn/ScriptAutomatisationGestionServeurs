@@ -98,7 +98,7 @@ Renforcer la sécurité du serveur en installant et configurant Fail2ban pour pr
   sudo fail2ban-client status apache-badbots
   sudo fail2ban-client status apache-404
  ```
-#### 3.7 Vérification des logs de Fail2ban :
+#### 3.8 Vérification des logs de Fail2ban :
   ```bash
 sudo tail -f /var/log/fail2ban.log
  ```
