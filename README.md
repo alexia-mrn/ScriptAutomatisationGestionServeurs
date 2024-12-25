@@ -88,11 +88,13 @@ Renforcer la sécurité du serveur en installant et configurant Fail2ban pour pr
   ```bash
   sudo nano /etc/fail2ban/jail.local
  ```
+Ici on a modifié les filtres apache-auth et apache-badbots. Le premier pour les tentatives d'authentification échouées et le deuxième pour bloquer les tentatives d'accès à des pages inexistantes ( souvent utilisées pour scanner des vulnérabilités ).
+Insérez image
 #### 3.6 Redémarrage du service Fail2ban pour appliquer les modifications :
   ```bash
   sudo systemctl restart fail2ban
  ```
-#### 3.7 Vérification des prisons actives :
+#### 3.7 Vérification :
   ```bash
   sudo fail2ban-client status apache-auth
   sudo fail2ban-client status apache-badbots
