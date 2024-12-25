@@ -105,3 +105,34 @@ Ici on a modifié les filtres apache-auth et apache-badbots. Le premier pour les
   ```bash
 sudo tail -f /var/log/fail2ban.log
  ```
+
+
+
+
+## 4. Automatisation de Tâches avec des Scripts
+
+### Objectif  
+Simplifier la gestion du serveur en automatisant certaines tâches courantes. Notamment pour :
+- Surveiller les logs d’Apache (détecter des tentatives d’accès suspectes).
+- Créer une tâche cron qui exécute ce script régulièrement.
+- Générer des alertes ou logs personnalisés en cas de détection d’activité anormale.
+
+### Étapes Réalisées  
+
+#### 4.1. Le Script 
+On crée le fichier monitor_apache_logs.sh dans /usr/local/bin 
+  ```bash
+  sudo nano /usr/local/bin/monitor_apache_logs.sh
+ ```
+- Puis on exécute ce code pour : placer les logs dans un fichier, filtrer les IPs qui effectuent plis de 100 requêtes en 10min et vérifier les tentatives d'accès à des fichiers critiques.
+![Capture Fail2ban](screenshots/monitorapachelogs.png)
+- Par la suite on va rendre exécutable le scripte et l'exécuter
+```bash
+  sudo chmod +x /usr/local/bin/monitor_apache_logs.sh
+  sudo /usr/local/bin/monitor_apache_logs.sh
+ ```
+
+#### 3.2 Vérification du service
+  ```bash
+  sudo systemctl status fail2ban
+ ```
