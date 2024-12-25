@@ -222,8 +222,7 @@ On accède à l'interface web :
 ```bash
   [glances -w](http://<adresse_IP_du_serveur>:61208)
  ```
-#### 6.3 Mise à jour du script
-  ```bash
-  
- ```
+
+![Capture Fail2ban](screenshots/automation.png)
+![Capture Fail2ban](screenshots/automation1.png)
 
