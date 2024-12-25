@@ -126,13 +126,26 @@ On crée le fichier monitor_apache_logs.sh dans /usr/local/bin
  ```
 - Puis on exécute ce code pour : placer les logs dans un fichier, filtrer les IPs qui effectuent plis de 100 requêtes en 10min et vérifier les tentatives d'accès à des fichiers critiques.
 ![Capture Fail2ban](screenshots/nanologs.png)
-- Par la suite on va rendre exécutable le scripte et l'exécuter
+- Par la suite on va rendre exécutable le script et l'exécuter
 ```bash
   sudo chmod +x /usr/local/bin/monitor_apache_logs.sh
   sudo /usr/local/bin/monitor_apache_logs.sh
  ```
 
-#### 3.2 Vérification du service
+#### 4.2 Ajouter une tâche Cron 
+Notre objectif maintenant est d'exécuter le script automatiquement toutes les 10min :
   ```bash
-  sudo systemctl status fail2ban
+  sudo crontab -e
+  */10 * * * * /usr/local/bin/monitor_apache_logs.sh
+ ```
+#### 4.3 Vérification du script  
+Pour voir si le script a bien fonctionner, on va afficher son contenu :
+  ```bash
+  cat /var/log/apache2/suspicious_activity.log
+ ```
+#### 4.2 Ajouter une tâche Cron 
+Notre objectif maintenant est d'exécuter le script automatiquement toutes les 10min :
+  ```bash
+  sudo crontab -e
+  */10 * * * * /usr/local/bin/monitor_apache_logs.sh
  ```
