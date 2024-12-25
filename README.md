@@ -144,5 +144,6 @@ Pour voir si le script a bien fonctionner, on va afficher son contenu :
   cat /var/log/apache2/suspicious_activity.log
  ```
 ![Capture Fail2ban](screenshots/EtatCritique.png)
+
 Ici on peut voir que le script à bien fonctionner ! 
 
