@@ -143,9 +143,6 @@ Pour voir si le script a bien fonctionner, on va afficher son contenu :
   ```bash
   cat /var/log/apache2/suspicious_activity.log
  ```
-#### 4.2 Ajouter une tâche Cron 
-Notre objectif maintenant est d'exécuter le script automatiquement toutes les 10min :
-  ```bash
-  sudo crontab -e
-  */10 * * * * /usr/local/bin/monitor_apache_logs.sh
- ```
+![Capture Fail2ban](screenshots/EtatCritique.png)
+Ici on peut voir que le script à bien fonctionner ! 
+
