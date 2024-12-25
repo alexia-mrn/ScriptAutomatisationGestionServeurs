@@ -125,7 +125,7 @@ On crée le fichier monitor_apache_logs.sh dans /usr/local/bin
   sudo nano /usr/local/bin/monitor_apache_logs.sh
  ```
 - Puis on exécute ce code pour : placer les logs dans un fichier, filtrer les IPs qui effectuent plis de 100 requêtes en 10min et vérifier les tentatives d'accès à des fichiers critiques.
-![Capture Fail2ban](screenshots/monitorapachelogs.png)
+![Capture Fail2ban](screenshots/nanologs.png)
 - Par la suite on va rendre exécutable le scripte et l'exécuter
 ```bash
   sudo chmod +x /usr/local/bin/monitor_apache_logs.sh
