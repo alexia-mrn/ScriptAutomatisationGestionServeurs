@@ -143,9 +143,87 @@ Pour voir si le script a bien fonctionner, on va afficher son contenu :
   ```bash
   cat /var/log/apache2/suspicious_activity.log
  ```
-#### 4.2 Ajouter une tâche Cron 
-Notre objectif maintenant est d'exécuter le script automatiquement toutes les 10min :
+![Capture Fail2ban](screenshots/EtatCritique.png)
+
+Ici on peut voir que le script à bien fonctionner ! 
+
+
+
+
+## 5. Ajout d'une alerte par e-mail
+
+### Objectif  
+Envoie d'une alerte par mail en cas de détéction d'activités suspectes.
+
+### Étapes Réalisées  
+
+#### 5.1. Installation d'un serveur de messagerie local
   ```bash
-  sudo crontab -e
-  */10 * * * * /usr/local/bin/monitor_apache_logs.sh
+  sudo apt update
+  sudo apt install mailutils
+
  ```
+#### 5.2 Test
+  ```bash
+  echo "testestest" | mail -s "Test de mailutils" tonadresseemail@example.com
+ ```
+
+Mince ! Petit soucis le mail ne s'envoie pas. On va installer un utlitaire SMTP et le configurer
+
+```bash
+  sudo apt install msmtp msmtp-mta
+  sudo nano /etc/msmtprc
+ ```
+On va donc le configurer comme ça : 
+```bash
+account default
+host smtp.gmail.com
+port 587
+auth on
+user tonemail@example.com
+password tonmotdepasse
+tls on
+tls_trust_file /etc/ssl/certs/ca-certificates.crt
+logfile /var/log/msmtp.log
+ ```
+Et on applique les permissions : 
+```bash
+  sudo chmod 600 /etc/msmtprc
+ ```
+
+
+## 6. Utilisation d'un outil de monitoring
+
+### Objectif  
+Mettre en place un outil de monitoring pour visualiser en temps réel les performances du serveur.
+
+### Étapes Réalisées  
+
+#### 6.1. Installation de Glances
+  ```bash
+  sudo apt update
+  sudo apt install glances -y
+ ```
+#### 6.2 Configuration
+
+Modifier le fichier pour permettre l'accès à distance
+  ```bash
+  sudo nano /etc/glances/glances.conf
+ ```
+On y rajoute :
+  ```bash
+    bind = 0.0.0.0
+    port = 61208
+   ```
+On accède à l'interface web :
+```bash
+  glances -w
+ ```
+```bash
+  [glances -w](http://<adresse_IP_du_serveur>:61208)
+ ```
+#### 6.3 Mise à jour du script
+  ```bash
+  
+ ```
+
